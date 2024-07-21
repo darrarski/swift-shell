@@ -8,7 +8,7 @@ let package = Package(
     .macOS(.v14),
   ],
   products: [
-    .executable(name: "input-output-example", targets: ["InputOutputExample"]),
+    .executable(name: "InputOutputExample", targets: ["InputOutputExample"]),
   ],
   dependencies: [
     .package(path: "../"),

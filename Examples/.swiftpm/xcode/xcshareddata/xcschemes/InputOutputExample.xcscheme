@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "input-output-example"
-               BuildableName = "input-output-example"
-               BlueprintName = "input-output-example"
+               BlueprintIdentifier = "InputOutputExample"
+               BuildableName = "InputOutputExample"
+               BlueprintName = "InputOutputExample"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,9 +44,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "input-output-example"
-            BuildableName = "input-output-example"
-            BlueprintName = "input-output-example"
+            BlueprintIdentifier = "InputOutputExample"
+            BuildableName = "InputOutputExample"
+            BlueprintName = "InputOutputExample"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -61,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "input-output-example"
-            BuildableName = "input-output-example"
-            BlueprintName = "input-output-example"
+            BlueprintIdentifier = "InputOutputExample"
+            BuildableName = "InputOutputExample"
+            BlueprintName = "InputOutputExample"
             ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
