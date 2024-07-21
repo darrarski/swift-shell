@@ -57,7 +57,9 @@ func assertError<T>(
   line: UInt = #line
 ) where T: Error, T: Equatable {
   guard let actual = actual as? T else {
-    XCTFail("Expected to throw \(T.self), but thrown \(actual)")
+    var actualDump = ""
+    customDump(actual, to: &actualDump)
+    XCTFail("Expected \(T.self), but got \(actualDump).", file: file, line: line)
     return
   }
   XCTAssertNoDifference(actual, expected, file: file, line: line)
