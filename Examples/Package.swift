@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "Examples",
+  name: "swift-shell-examples",
   platforms: [
     .macOS(.v14),
   ],
