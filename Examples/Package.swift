@@ -1,4 +1,5 @@
 // swift-tools-version: 5.10
+import Foundation
 import PackageDescription
 
 let package = Package(
@@ -16,11 +17,19 @@ let package = Package(
     .executableTarget(
       name: "InputOutputExample",
       dependencies: [
-        .product(name: "SwiftShell", package: "swift-shell"),
+        // NB: The name of the package is the name of the directory where `Package.swift` is located.
+        .product(name: "SwiftShell", package: rootDirectoryName),
       ]
     ),
   ]
 )
+
+var rootDirectoryName: String {
+  URL(filePath: #file)
+    .deletingLastPathComponent()
+    .deletingLastPathComponent()
+    .lastPathComponent
+}
 
 extension Target {
   var isLocal: Bool { ![.binary, .system].contains(self.type) }
