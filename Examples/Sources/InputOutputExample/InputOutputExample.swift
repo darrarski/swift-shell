@@ -3,15 +3,15 @@ import SwiftShell
 
 /// Example of running bash script that read lines from input.
 ///
-/// Output:
+/// Example output:
 /// ```
-/// [00:00.000] Example started
-/// [00:00.003] <stdout> script output
-/// [00:00.003] <stderr> script error
-/// [00:01.011] <stdout> read line: Hello, World!
-/// [00:02.027] <stdout> read line: Goodbye!
-/// [00:03.063] <stdout> finished reading lines
-/// [00:03.130] Example finished
+/// [00:00.000020981] Example started
+/// [00:00.003635049] <stdout> script output
+/// [00:00.003684998] <stderr> script error
+/// [00:01.052050948] <stdout> read line: Hello, World!
+/// [00:02.116451979] <stdout> read line: Goodbye!
+/// [00:03.166569948] <stdout> finished reading lines
+/// [00:03.166733027] Example finished
 /// ```
 @main
 struct InputOutputExample {
@@ -31,37 +31,37 @@ struct InputOutputExample {
       """
     )
     
-    // Create task that runs the command:
-    let task = ShellTask(command)
+    // Create process that runs the command:
+    let process = ShellProcess(command)
 
     Task {
-      // Iterate over script's standard output and print it to `stdout`:
-      for await data in task.outputStream() {
+      // Iterate over process's standard output and print it to `stdout`:
+      for await data in process.outputStream() {
         fputs("[\(time.stamp)] <stdout> \(String(data: data, encoding: .utf8)!)", stdout)
       }
     }
 
     Task {
-      // Iterate over script's standard error and print it to `stdout`:
-      for await data in task.errorStream() {
+      // Iterate over process's standard error and print it to `stdout`:
+      for await data in process.errorStream() {
         fputs("[\(time.stamp)] <stderr> \(String(data: data, encoding: .utf8)!)", stdout)
       }
     }
 
-    // Start executing the script:
-    try task.run()
+    // Run the process and start executing the script:
+    try await process.run()
 
     // Send input to the script over time:
-    try task.send(input: "Hello".data(using: .utf8)!)
+    try await process.send(input: "Hello".data(using: .utf8)!)
     try await Task.sleep(for: .seconds(1))
-    try task.send(input: ", World!\n".data(using: .utf8)!)
+    try await process.send(input: ", World!\n".data(using: .utf8)!)
     try await Task.sleep(for: .seconds(1))
-    try task.send(input: "Goodbye!\n".data(using: .utf8)!)
+    try await process.send(input: "Goodbye!\n".data(using: .utf8)!)
     try await Task.sleep(for: .seconds(1))
 
-    // Finish sending input and wait till the scripts ends:
-    try task.endInput()
-    try await task.waitUntilExit()
+    // Finish sending input and wait till the process ends:
+    try await process.endInput()
+    try await process.waitUntilExit()
 
     fputs("[\(time.stamp)] Example finished\n", stdout)
   }
@@ -75,7 +75,7 @@ struct Time {
     let interval = Date.now.timeIntervalSince(start)
     let minutes = (interval / 60).rounded(.down)
     let seconds = (interval - minutes * 60).rounded(.down)
-    let milliseconds = ((interval - interval.rounded(.down)) * Double(MSEC_PER_SEC)).rounded()
-    return String(format: "%02.f:%02.f.%03.f", minutes, seconds, milliseconds)
+    let nanoseconds = ((interval - interval.rounded(.down)) * Double(NSEC_PER_SEC)).rounded()
+    return String(format: "%02.f:%02.f.%09.f", minutes, seconds, nanoseconds)
   }
 }

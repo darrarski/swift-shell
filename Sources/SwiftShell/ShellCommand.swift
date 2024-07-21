@@ -12,19 +12,19 @@ public struct ShellCommand: Equatable, Sendable {
   ///   - executableURL: URL represening path to the executable.
   ///   - arguments: The command arguments used to launch the executable.
   ///   - environment: Environment variables (defaults to current process environment).
-  ///   - workDirectory: Working directory for the executable.
+  ///   - workingDirectory: Working directory for the executable.
   ///   - qualityOfService: Quality of service level applied to the process.
   public init(
     executableURL: URL,
     arguments: [String] = [],
     environment: ShellEnvironment = .current,
-    workDirectory: URL? = nil,
+    workingDirectory: URL? = nil,
     qualityOfService: QualityOfService? = nil
   ) {
     self.executableURL = executableURL
     self.arguments = arguments
     self.environment = environment
-    self.workDirectory = workDirectory
+    self.workingDirectory = workingDirectory
     self.qualityOfService = qualityOfService
   }
   
@@ -40,7 +40,7 @@ public struct ShellCommand: Equatable, Sendable {
   /// Working directory for the executable. 
   ///
   /// If `nil` (default), the current working directory will be used.
-  public var workDirectory: URL?
+  public var workingDirectory: URL?
   
   /// Quality of service level applied to the process.
   ///
@@ -58,18 +58,18 @@ extension ShellCommand {
   /// - Parameters:
   ///   - command: Command to execute. First element should be the path to executable. Following arguments represents  arguments passed to the executable.
   ///   - environment: Environment variables (defaults to current process environment).
-  ///   - workDirectory: Working directory for the executable.
+  ///   - workingDirectory: Working directory for the executable.
   ///   - qualityOfService: Quality of service level applied to the process.
   public init(
     _ command: String...,
     environment: ShellEnvironment = .current,
-    workDirectory: String? = nil,
+    workingDirectory: String? = nil,
     qualityOfService: QualityOfService? = nil
   ) {
     self.executableURL = URL(filePath: command.first!)
     self.arguments = command.suffix(from: 1).map { $0 }
     self.environment = environment
-    self.workDirectory = workDirectory.map { URL(filePath: $0) }
+    self.workingDirectory = workingDirectory.map { URL(filePath: $0) }
     self.qualityOfService = qualityOfService
   }
 }
