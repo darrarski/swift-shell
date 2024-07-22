@@ -6,6 +6,11 @@ import SwiftShell
 ///
 /// Standard output is colored in cyan, standard error in red. Timestamps are blue.
 ///
+/// Because Xcode console does not support colors, the example should be run from Terminal:
+/// ```sh
+/// $ Examples/run.sh -- DecorateOutputExample
+/// ```
+///
 /// Example output (whithout colors):
 /// ```
 /// [00:00.008749962] Hello, World!
