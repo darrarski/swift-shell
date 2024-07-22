@@ -17,9 +17,9 @@ The library is distributed as a swift package.
 .product(name: "SwiftShell", package: "swift-shell"),
 ```
 
-The code is dressed in documentation comments that explain the purpose of each variable and function. The examples described below and the library [unit tests](Tests/SwiftShellTests) explain how to use it.
+The code is dressed in documentation comments that explain the purpose of each variable and function. The examples described below and the library [unit tests](Tests/SwiftShellTests) explain how to use it. You can also check out the auto-generated [documentation hosted on SwiftPackageIndex](https://swiftpackageindex.com/darrarski/swift-shell/main/documentation/swiftshell).
 
-### Examples
+## 📚 Examples
 
 Run bash script, send input, and retrieve the script's output:
 
@@ -31,11 +31,45 @@ let output = try await process.output()!
 print(String(data: output, encoding: .utf8)!) // Hello, Swift!
 ```
 
-#### More examples
+Check out the examples included in this repository:
 
-Check out the examples included in a [separate package](Examples/) in this repository:
+<details>
+<summary><b>Send input and stream bash script's output.</b></summary>
 
-- [InputOutputExample](Examples/Sources/InputOutputExample/InputOutputExample.swift)
+#### InputOutputExample
+
+![SwiftShell InputOutputExample](Examples/SwiftShell_InputOutputExample.gif)
+
+[Source code](Examples/Sources/InputOutputExample/InputOutputExample.swift)
+
+Run example:
+
+```sh
+$ Examples/run.sh -- InputOutputExample
+```
+
+---
+
+</details>
+
+<details>
+<summary><b>Stream and decorate bash script's output.</b></summary>
+
+#### DecorateOutputExample
+
+![SwiftShell DecorateOutputExample](Examples/SwiftShell_DecorateOutputExample.gif)
+
+[Source code](Examples/Sources/DecorateOutputExample/DecorateOutputExample.swift)
+
+Run example:
+
+```sh
+$ Examples/run.sh -- DecorateOutputExample
+```
+
+---
+
+</details>
 
 ## 🛠 Development
 

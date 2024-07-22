@@ -8,12 +8,22 @@ let package = Package(
     .macOS(.v14),
   ],
   products: [
+    .executable(name: "DecorateOutputExample", targets: ["DecorateOutputExample"]),
     .executable(name: "InputOutputExample", targets: ["InputOutputExample"]),
   ],
   dependencies: [
     .package(path: "../"),
+    .package(url: "https://github.com/apple/swift-async-algorithms.git", from: "1.0.1"),
   ],
   targets: [
+    .executableTarget(
+      name: "DecorateOutputExample",
+      dependencies: [
+        // NB: The name of the package is the name of the directory where `Package.swift` is located.
+        .product(name: "SwiftShell", package: rootDirectoryName),
+        .product(name: "AsyncAlgorithms", package: "swift-async-algorithms"),
+      ]
+    ),
     .executableTarget(
       name: "InputOutputExample",
       dependencies: [
@@ -65,6 +75,9 @@ for target in package.targets where target.isLocal {
 #endif
 #if !hasFeature(InternalImportsByDefault)
   swiftSettings.append(.enableUpcomingFeature("InternalImportsByDefault", .whenDebug))
+#endif
+#if !hasFeature(BareSlashRegexLiterals)
+  swiftSettings.append(.enableUpcomingFeature("BareSlashRegexLiterals"))
 #endif
   target.swiftSettings = swiftSettings
 }
