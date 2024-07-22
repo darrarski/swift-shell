@@ -31,11 +31,45 @@ let output = try await process.output()!
 print(String(data: output, encoding: .utf8)!) // Hello, Swift!
 ```
 
-#### More examples
+---
 
 Check out the examples included in a [separate package](Examples/) in this repository:
 
-- [InputOutputExample](Examples/Sources/InputOutputExample/InputOutputExample.swift)
+<details>
+<summary>Send input and stream bash script's output.</summary>
+
+#### InputOutputExample
+
+![SwiftShell InputOutputExample](Examples/SwiftShell_InputOutputExample.gif)
+
+[Source code](Examples/Sources/InputOutputExample/InputOutputExample.swift)
+
+Run example:
+
+```sh
+$ Examples/run.sh -- InputOutputExample
+```
+
+</details>
+
+<details>
+<summary>Stream and decorate bash script's output.</summary>
+
+#### DecorateOutputExample
+
+![SwiftShell DecorateOutputExample](Examples/SwiftShell_DecorateOutputExample.gif)
+
+[Source code](Examples/Sources/DecorateOutputExample/DecorateOutputExample.swift)
+
+Run example:
+
+```sh
+$ Examples/run.sh -- DecorateOutputExample
+```
+
+</details>
+
+</details>
 
 ## 🛠 Development
 
