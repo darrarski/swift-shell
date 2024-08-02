@@ -51,8 +51,9 @@ extension SwiftSetting {
 
 for target in package.targets where target.isLocal {
   var swiftSettings = target.swiftSettings ?? []
-  swiftSettings.append(.enableActorDataRaceChecks(.whenDebug))
-  swiftSettings.append(.debugTime(.whenDebug))
+  // NB: Uncomment to enable unsafe-flags for development:
+  //swiftSettings.append(.enableActorDataRaceChecks(.whenDebug))
+  //swiftSettings.append(.debugTime(.whenDebug))
 #if !hasFeature(StrictConcurrency)
   swiftSettings.append(.enableUpcomingFeature("StrictConcurrency", .whenDebug))
   swiftSettings.append(.enableExperimentalFeature("StrictConcurrency", .whenDebug))
