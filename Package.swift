@@ -55,14 +55,14 @@ for target in package.targets where target.isLocal {
   //swiftSettings.append(.enableActorDataRaceChecks(.whenDebug))
   //swiftSettings.append(.debugTime(.whenDebug))
 #if !hasFeature(StrictConcurrency)
-  swiftSettings.append(.enableUpcomingFeature("StrictConcurrency", .whenDebug))
-  swiftSettings.append(.enableExperimentalFeature("StrictConcurrency", .whenDebug))
+  swiftSettings.append(.enableUpcomingFeature("StrictConcurrency"))
+  swiftSettings.append(.enableExperimentalFeature("StrictConcurrency"))
 #endif
 #if !hasFeature(GlobalConcurrency)
-  swiftSettings.append(.enableUpcomingFeature("GlobalConcurrency", .whenDebug))
+  swiftSettings.append(.enableUpcomingFeature("GlobalConcurrency"))
 #endif
 #if !hasFeature(InternalImportsByDefault)
-  swiftSettings.append(.enableUpcomingFeature("InternalImportsByDefault", .whenDebug))
+  swiftSettings.append(.enableUpcomingFeature("InternalImportsByDefault"))
 #endif
   target.swiftSettings = swiftSettings
 }
