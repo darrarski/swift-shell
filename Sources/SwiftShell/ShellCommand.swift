@@ -1,4 +1,8 @@
+#if hasFeature(InternalImportsByDefault)
+public import Foundation
+#else
 import Foundation
+#endif
 
 /// Shell command representation.
 public struct ShellCommand: Equatable, Sendable {

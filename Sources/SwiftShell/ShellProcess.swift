@@ -1,4 +1,8 @@
+#if hasFeature(InternalImportsByDefault)
+public import Foundation
+#else
 import Foundation
+#endif
 
 /// Represents shell process.
 public actor ShellProcess {

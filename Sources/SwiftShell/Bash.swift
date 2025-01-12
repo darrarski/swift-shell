@@ -1,4 +1,8 @@
+#if hasFeature(InternalImportsByDefault)
+public import Foundation
+#else
 import Foundation
+#endif
 
 extension ShellCommand {
   /// Creates shell command that executes provided Bash script.
